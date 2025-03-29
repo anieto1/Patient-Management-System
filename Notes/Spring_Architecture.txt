@@ -1,0 +1,20 @@
+Front End(Client):
+    Makes post request to controller
+    Returns response from controller
+
+Controller(Handles HTTp request and response):
+    Passes DTO to service
+    returns DTO from service
+
+Service(Handles business logic including conversions between DTO's and domain models):
+    Passes model to repository
+    receives models from repository
+
+Repository(handles interactions with the database):
+    Receives models from service
+    returns models to service
+    run queries and updates on the database
+
+DTO(Data Transfer Object):
+    Used to transfer data between the front end and the back end
+    
