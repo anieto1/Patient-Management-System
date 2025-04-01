@@ -1,14 +1,16 @@
 package com.pm.patient_service.model;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.util.UUID;
 
 /**
  *
@@ -16,6 +18,7 @@ import java.util.UUID;
  */
 
  @Entity
+ @Table(name = "patient")
 public class Patient {
 
     @Id
@@ -28,17 +31,18 @@ public class Patient {
     @NotNull
     @Email
     @Column(unique = true)
-
     private String email;
 
     @NotNull
     private String address;
 
     @NotNull
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
     @NotNull
-    private LocalDate registredDate;
+    @Column(name = "registered_date")
+    private LocalDate registeredDate;
     
     // ID property
     public UUID getId() {
@@ -86,11 +90,11 @@ public class Patient {
     }
 
     // Registered Date property
-    public LocalDate getRegistredDate() {
-        return registredDate;
+    public LocalDate getRegisteredDate() {
+        return registeredDate;
     }
 
-    public void setRegistredDate(LocalDate registredDate) {
-        this.registredDate = registredDate;
+    public void setRegisteredDate(LocalDate registeredDate) {
+        this.registeredDate = registeredDate;
     }
 }

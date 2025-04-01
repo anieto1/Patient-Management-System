@@ -1,0 +1,3 @@
+when creating a dto, in this instance, we made all the properties into strings to make it 
+easier to convert them into json strings. When doing an http request,
+they would auto do that and cross upon errors. creating a DTO would help avoid that
