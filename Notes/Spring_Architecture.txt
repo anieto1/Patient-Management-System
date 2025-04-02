@@ -18,3 +18,54 @@ Repository(handles interactions with the database):
 DTO(Data Transfer Object):
     Used to transfer data between the front end and the back end
     
+
+
+
+1. **Entity (Patient.java)**
+   - Represents the database table structure
+   - Contains the actual data model with JPA annotations
+   - Maps directly to database columns
+
+2. **DTO (PatientResponseDTO.java)**
+   - Data Transfer Object
+   - Used to transfer data between layers
+   - Hides internal entity structure from API consumers
+   - Can combine or transform data from multiple entities
+
+3. **Mapper (PatientMapper.java)**
+   - Converts between Entity and DTO
+   - Handles data transformations (e.g., date formatting)
+   - Provides clean separation between database and API layers
+
+4. **Repository (PatientRepository.java)**
+   - Handles database operations
+   - Extends JpaRepository for basic CRUD operations
+   - Communicates directly with the database
+
+5. **Service (PatientService.java)**
+   - Contains business logic
+   - Uses Repository to access data
+   - Uses Mapper to convert between Entity and DTO
+   - Orchestrates operations between components
+
+6. **Controller (PatientController.java)**
+   - Handles HTTP requests
+   - Uses Service to process requests
+   - Returns DTOs to clients
+   - Never exposes entities directly
+
+Flow of a typical request:
+```
+Client → Controller → Service → Repository → Database
+                     ↑
+                     Mapper
+                     ↓
+Client ← Controller ← Service ← Repository ← Database
+```
+
+This layered architecture provides:
+- Separation of concerns
+- Better maintainability
+- Easier testing
+- Security (hiding internal structure)
+- Flexibility to change layers independently
