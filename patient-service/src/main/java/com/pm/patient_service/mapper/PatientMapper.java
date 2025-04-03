@@ -9,8 +9,10 @@ import com.pm.patient_service.model.Patient;
 
 public class PatientMapper {
     public static PatientResponseDTO toDTO(Patient patient) {
+        if (patient == null) return null;
+        
         PatientResponseDTO patientResponseDTO = new PatientResponseDTO();
-        patientResponseDTO.setId(patient.getId().toString());
+        patientResponseDTO.setId(patient.getId() != null ? patient.getId().toString() : null);
         patientResponseDTO.setName(patient.getName());
         patientResponseDTO.setEmail(patient.getEmail());
         patientResponseDTO.setAddress(patient.getAddress());
@@ -22,15 +24,16 @@ public class PatientMapper {
     }
 
     public static Patient toModel(PatientRequestDTO patientRequestDTO) {
+        if (patientRequestDTO == null) return null;
+        
         Patient patient = new Patient();
         patient.setName(patientRequestDTO.getName());
         patient.setEmail(patientRequestDTO.getEmail());
         patient.setAddress(patientRequestDTO.getAddress());
         patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
-        patient.setRegisteredDate(LocalDate.parse(patientRequestDTO.getRegisteredDate()));
+        patient.setRegisteredDate(LocalDate.now());
 
         return patient;
-        
     }
 }
 /**

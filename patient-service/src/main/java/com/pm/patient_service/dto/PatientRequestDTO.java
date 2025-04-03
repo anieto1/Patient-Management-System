@@ -2,11 +2,10 @@ package com.pm.patient_service.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class PatientRequestDTO {
-    @NotBlank(message =  "Name is required")
+    @NotBlank(message = "Name is required")
     @Size(max=100, message="Name must be less than 100 characters")
     private String name;
 
@@ -19,10 +18,9 @@ public class PatientRequestDTO {
     private String address;
 
     @NotBlank(message = "Date of birth is required")
-   // @Pattern(regexp="\\d{2}/\\d{2}/\\d{4}", message="Invalid date of birth format. Use MM/DD/YYYY")
+    // @Pattern(regexp="\\d{2}/\\d{2}/\\d{4}", message="Invalid date of birth format. Use MM/DD/YYYY")
     private String dateOfBirth;
     
-    @NotNull(message = "Registered date is required")
     private String registeredDate;
 
     public String getName() {
