@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.pm.patient_service.dto.PatientRequestDTO;
 import com.pm.patient_service.dto.PatientResponseDTO;
@@ -56,9 +57,14 @@ public class PatientService {
 
         Patient updatedPatient = patientRepository.save(patient);
         return PatientMapper.toDTO(updatedPatient);
-        
-        
+    }
 
+@DeleteMapping
+    public void deletePatient(UUID id){
+        if(!patientRepository.existsById(id)){
+            throw new PatientNotFoundException("Patient not found with id:" +id);
+        }
+        patientRepository.deleteById(id);
     }
 
 
