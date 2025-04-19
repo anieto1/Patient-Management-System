@@ -1,0 +1,25 @@
+1. **Proto Definition:**
+   - You've defined a `BillingService` with one RPC method: `CreateBillingAccount`
+   - The service uses request/response messages: `BillingRequest` (patientId, name, email) and `BillingResponse` (accountId, status)
+
+2. **Billing Service (gRPC Server):**
+   - Implemented a gRPC server in the Billing Service using `@GrpcService` annotation
+   - The server runs on port 9001 (configured in application.properties)
+   - Implemented the `createBillingAccount` method that currently returns mock data
+
+3. **Patient Service (gRPC Client):**
+   - Created a gRPC client in the Patient Service to communicate with the Billing Service
+   - The client connects to the Billing Service using the configured address and port
+   - Implemented a method to create billing accounts by sending patient information
+
+4. **Integration:**
+   - The Patient Service calls the Billing Service when a new patient is created
+   - The billing account creation is triggered as part of the patient creation workflow
+   - Configuration is handled through environment variables (BILLING_SERVICE_GRPC_PORT)
+
+5. **Dependencies:**
+   - Added necessary gRPC dependencies to both services (grpc-netty-shaded, grpc-protobuf, grpc-stub)
+   - Using the grpc-spring-boot-starter for integration with Spring Boot
+   - Configured protobuf plugin for code generation
+
+This implementation establishes a simple microservice communication pattern where the Patient Service creates billing accounts in the Billing Service via gRPC when new patients are registered.

@@ -1,0 +1,60 @@
+# Apache Kafka Basics
+
+## What is Kafka?
+Apache Kafka is a distributed event streaming platform designed to handle high-throughput, fault-tolerant, real-time data streaming. Originally developed by LinkedIn and later donated to the Apache Software Foundation, Kafka is now widely used for building real-time streaming data pipelines and applications.
+
+## Core Concepts
+
+### 1. Messages and Topics
+- **Messages**: The basic unit of data in Kafka (also called records)
+- **Topics**: Named feeds or categories to which messages are published
+- **Partitions**: Each topic is divided into partitions for parallelism and scalability
+- **Offsets**: Unique sequential IDs assigned to messages within a partition
+
+### 2. Architecture Components
+- **Producers**: Applications that send messages to Kafka topics
+- **Consumers**: Applications that read messages from Kafka topics
+- **Brokers**: Kafka servers that store data and serve client requests
+- **Zookeeper**: Coordinates the Kafka cluster (being phased out in newer versions)
+- **Kafka Cluster**: A group of Kafka brokers working together
+
+### 3. Key Features
+- **High Throughput**: Can handle millions of messages per second
+- **Scalability**: Horizontally scalable by adding more brokers
+- **Durability**: Messages are persisted to disk and replicated
+- **Fault Tolerance**: Can survive broker failures without data loss
+- **Low Latency**: Can deliver messages in near real-time
+- **Data Retention**: Configurable retention periods for messages
+
+### 4. Consumer Groups
+- Multiple consumers can be organized into consumer groups
+- Each partition is consumed by only one consumer within a group
+- Enables parallel processing and load balancing
+
+### 5. Replication
+- Data is replicated across multiple brokers
+- Each partition has one leader and multiple followers
+- Provides fault tolerance and high availability
+
+## Use Cases
+- Real-time analytics
+- Log aggregation
+- Event sourcing
+- Stream processing
+- Messaging systems
+- Activity tracking
+- Metrics monitoring
+- Application integration
+
+## Kafka Ecosystem
+- **Kafka Connect**: Framework for importing/exporting data
+- **Kafka Streams**: Library for stream processing
+- **Schema Registry**: Manages schemas for messages
+- **ksqlDB**: SQL interface for stream processing
+
+## Advantages
+- Decouples producers from consumers
+- Handles backpressure automatically
+- Provides at-least-once, at-most-once, or exactly-once delivery semantics
+- Preserves message ordering within partitions
+- Supports multiple consumers without message loss
