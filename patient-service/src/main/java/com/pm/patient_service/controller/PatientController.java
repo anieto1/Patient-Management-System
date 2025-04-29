@@ -37,7 +37,7 @@ public class PatientController {
         List<PatientResponseDTO> patients = patientService.getPatients();
         return ResponseEntity.ok().body(patients);
      }
-//Anytime we create, we use a post mapping/post request
+//Anytime we create, we use a post-mapping/post-request
 
      @PostMapping
      @Operation(summary = "Create a new patient", description = "Create a new patient with the provided details")
