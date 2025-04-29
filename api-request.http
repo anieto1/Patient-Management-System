@@ -1,10 +1,20 @@
+GRPC localhost:9001/BillingService/CreateBillingAccount
+
+{
+  "patientId": "12333",
+  "name": "Jon Doe",
+  "email": "johnny@exmple.com"
+
+}
+
+###
 ### POST request to add a patient
 POST http://localhost:4000/patients
 Content-Type: application/json
 
 {
   "name": "John D",
-  "email": "testin_cer_garbage1@example.com",
+  "email": "whatisgoingon776789@example.com",
   "address": "123 No Name St",
   "dateOfBirth": "1995-11-28",
   "registeredDate": "2024-09-09"

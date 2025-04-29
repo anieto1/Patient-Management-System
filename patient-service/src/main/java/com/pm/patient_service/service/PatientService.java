@@ -17,6 +17,8 @@ import com.pm.patient_service.mapper.PatientMapper;
 import com.pm.patient_service.model.Patient;
 import com.pm.patient_service.respository.PatientRepository;
 
+import static org.apache.kafka.common.requests.FetchMetadata.log;
+
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
@@ -46,10 +48,20 @@ public class PatientService {
         Patient newPatient = patientRepository.save(
                 PatientMapper.toModel(patientRequestDTO));
 
-        billingServiceGrpcClient.createBillingAccount(newPatient.getId().toString(),
-                newPatient.getName(), newPatient.getEmail());
+        try{
+            billingServiceGrpcClient.createBillingAccount(newPatient.getId().toString(),
+                    newPatient.getName(), newPatient.getEmail());
+        }catch(Exception e){
+            log.error("grpc is cooked");
+            throw e;
+        }
 
-        kafkaProducer.sendEvent(newPatient);
+
+        try{
+            kafkaProducer.sendEvent(newPatient);
+        }catch(Exception e){
+            log.error("Kafka no worky");
+        }
 
         return PatientMapper.toDTO(newPatient);
     }

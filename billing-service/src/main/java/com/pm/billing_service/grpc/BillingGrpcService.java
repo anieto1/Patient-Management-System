@@ -16,29 +16,21 @@ public class BillingGrpcService extends BillingServiceImplBase{
     private static final Logger log = (Logger) LoggerFactory.getLogger(BillingGrpcService.class);
 
     @Override
-    public void createBillingAccount(BillingRequest billingRequest, StreamObserver<BillingResponse> responseObserver){
-        // Log the incoming request details for debugging/monitoring
-        log.info("createBillingAccount request recieved{}", billingRequest.toString());
+    public void createBillingAccount(BillingRequest billingRequest,
+                                     StreamObserver<BillingResponse> responseObserver) {
 
-        // TODO: Implement business logic
-        // - Validate request data
-        // - Create account record in database
-        // - Generate unique account ID
-        // - Set up payment methods
-        // - Initialize account status
+        log.info("createBillingAccount request received {}", billingRequest.toString());
 
-        // For now, return a mock response with hardcoded values
+        // Business logic - e.g save to database, perform calculates etc
+
         BillingResponse response = BillingResponse.newBuilder()
-        .setAccountId("12345") // Placeholder account ID
-        .setStatus("Active")   // Default initial status
-        .build();
+                .setAccountId("12345")
+                .setStatus("ACTIVE")
+                .build();
 
-        // Send the response back to the client
         responseObserver.onNext(response);
-        
-        // Mark the RPC call as completed
         responseObserver.onCompleted();
     }
-    
-    
+
+
 }
