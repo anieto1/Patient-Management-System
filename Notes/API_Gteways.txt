@@ -1,0 +1,15 @@
+- An Api gateway acts as a single entry point for clients to interact with multiple microservices
+- Routes requests to the microservices, hiding the internal address from the clients
+- Handles concerns like authentication, authorization, logging, monitoring,
+ rate limiting, and caching centrally, that are common to all
+
+
+ - IN our current setups, expose our ports to the client when calling a rest request to the patient service,
+ which becomes a security issue
+
+ - As we increase the number of microservices, we will have to configure more ports to communicate with the services
+
+ - With an api gateway, the client just communicates with the gateway, and the gateway will redirect to the appropriate microservice
+ - It centralizes calls so the gateway can handle the rooting, hiding the internal addresses of services
+
+ -can also handle authentication and authorization
